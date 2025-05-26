@@ -1,15 +1,13 @@
-# FTServo_Linux
-FEETECH BUS Servo Linux library
+# FTServoLibrary
+袘懈斜谢懈芯褌械泻邪 写谢褟 褍锌褉邪胁谢械薪懈褟 写胁懈谐邪褌械谢褟屑懈 Feetech 褋 Linux. 小写械谢邪薪芯 褋锌械褑懈邪谢褜薪芯 写谢褟 锌褉芯械泻褌邪 RDS-2P.
 
-# Static library libSCServo.a
-- cd src
-- cmake .
-- make
+# 小斜芯褉泻邪 斜懈斜谢懈芯褌械泻懈 泻邪泻 libSCServo.a
+- sudo apt update && sudo apt install libstdc++-dev
+- mkdir build && cd build
+- cmake .. && cmake --build .
 
-# TEST
+# 孝械褋褌懈褉芯胁邪薪懈械
 - cd examples/SMS_STS/WritePos
 - cmake .
 - make
 - sudo ./WritePos /dev/ttyUSB0
-- /dev/ttyUSB0根据设备实际串口指定
-- 以上例子以SMS/STS舵机的WritePos为例，需要根据舵机型号选择合适的测试例子

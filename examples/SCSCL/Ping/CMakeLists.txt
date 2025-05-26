@@ -1,14 +1,26 @@
-cmake_Minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 3.20)
 set(project "Ping")
 project(${project})
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O3")
+# Устанавливаем стандарт C++17 (синхронизируем с основным проектом)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-include_directories(../../../src)
-link_directories(../../../src)
-link_libraries(libSCServo.a)
+# Добавляем флаги компиляции (оптимизация O3)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
 
-file(GLOB hdrs *h)
+# Указываем путь к заголовочным файлам библиотеки
+include_directories(${CMAKE_SOURCE_DIR}/../../../include)
+
+# Указываем путь к библиотеке
+link_directories(${CMAKE_SOURCE_DIR}/../../../build)
+
+# Собираем исходные файлы примера
 file(GLOB srs *.cpp)
+file(GLOB hdrs *.hpp)
 
-add_executable(${project} ${hdrs} ${srs})
+# Создаем исполняемый файл
+add_executable(${project} ${srs} ${hdrs})
+
+# Линкуем библиотеку SCServo
+target_link_libraries(${project} PRIVATE FTServo)

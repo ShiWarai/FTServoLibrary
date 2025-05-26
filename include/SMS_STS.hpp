@@ -1,5 +1,5 @@
 ﻿/*
- * SMS_STS.h
+ * SMS_STS.hpp
  * 飞特SMS/STS系列串行舵机应用层程序
  * 日期: 2021.12.8
  * 作者: 
@@ -60,7 +60,7 @@
 #define SMS_STS_PRESENT_CURRENT_L 69
 #define SMS_STS_PRESENT_CURRENT_H 70
 
-#include "SCSerial.h"
+#include "SCSerial.hpp"
 
 class SMS_STS : public SCSerial
 {

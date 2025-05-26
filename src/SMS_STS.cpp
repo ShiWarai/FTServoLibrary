@@ -5,7 +5,7 @@
  * 作者: 
  */
 
-#include "SMS_STS.h"
+#include "SMS_STS.hpp"
 
 SMS_STS::SMS_STS()
 {

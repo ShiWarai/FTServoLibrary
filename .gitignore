@@ -1,0 +1,26 @@
+# Игнорируем папки сборки
+build/
+**/build/
+
+# Игнорируем временные файлы CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Игнорируем скомпилированные файлы
+*.a
+*.o
+*.so
+
+# Игнорируем временные файлы редакторов
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Игнорируем прочие временные файлы
+*.log
+*.tmp
+*.bak
+core

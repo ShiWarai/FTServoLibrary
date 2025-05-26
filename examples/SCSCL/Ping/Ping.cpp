@@ -3,7 +3,7 @@ Ping指令测试,测试总线上相应ID舵机是否就绪,广播指令只适用
 */
 
 #include <iostream>
-#include "SCServo.h"
+#include "SCServo.hpp"
 
 SCSCL sc;
 
@@ -18,7 +18,7 @@ int main(int argc, char **argv)
         std::cout<<"Failed to init scscl motor!"<<std::endl;
         return 0;
     }
-	int ID = sc.Ping(1);
+	int ID = sc.Ping(2);
 	if(ID!=-1){
 		std::cout<<"ID:"<<ID<<std::endl;
 	}else{

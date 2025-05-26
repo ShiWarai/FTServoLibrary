@@ -1,5 +1,5 @@
 ﻿/*
- * SCS.h
+ * SCS.hpp
  * 飞特串行舵机通信层协议程序
  * 日期: 2022.3.29
  * 作者: 
@@ -8,7 +8,7 @@
 #ifndef _SCS_H
 #define _SCS_H
 
-#include "INST.h"
+#include "INST.hpp"
 
 class SCS{
 public:

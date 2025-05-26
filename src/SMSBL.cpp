@@ -5,7 +5,7 @@
  * 作者: 
  */
 
-#include "SMSBL.h"
+#include "SMSBL.hpp"
 
 SMSBL::SMSBL()
 {

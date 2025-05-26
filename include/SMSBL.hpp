@@ -1,5 +1,5 @@
 ﻿/*
- * SMSBL.h
+ * SMSBL.hpp
  * 飞特SMSBL系列串行舵机应用层程序
  * 日期: 2020.6.17
  * 作者: 
@@ -60,7 +60,7 @@
 #define SMSBL_PRESENT_CURRENT_L 69
 #define SMSBL_PRESENT_CURRENT_H 70
 
-#include "SCSerial.h"
+#include "SCSerial.hpp"
 
 class SMSBL : public SCSerial
 {

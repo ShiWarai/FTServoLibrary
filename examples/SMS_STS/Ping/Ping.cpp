@@ -3,7 +3,7 @@ Ping指令测试,测试总线上相应ID舵机是否就绪,广播指令只适用
 */
 
 #include <iostream>
-#include "SCServo.h"
+#include "SCServo.hpp"
 
 SMS_STS sm_st;
 
@@ -14,7 +14,7 @@ int main(int argc, char **argv)
         return 0;
 	}
 	std::cout<<"serial:"<<argv[1]<<std::endl;
-    if(!sm_st.begin(115200, argv[1])){
+    if(!sm_st.begin(1000000, argv[1])){
         std::cout<<"Failed to init sms/sts motor!"<<std::endl;
         return 0;
     }

@@ -1,5 +1,5 @@
 ﻿/*
- * SCSCL.h
+ * SCSCL.hpp
  * 飞特SCSCL系列串行舵机应用层程序
  * 日期: 2020.6.17
  * 作者: 
@@ -56,7 +56,7 @@
 #define SCSCL_PRESENT_CURRENT_L 69
 #define SCSCL_PRESENT_CURRENT_H 70
 
-#include "SCSerial.h"
+#include "SCSerial.hpp"
 
 class SCSCL : public SCSerial
 {
