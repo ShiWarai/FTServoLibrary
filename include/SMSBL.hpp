@@ -1,14 +1,14 @@
 ﻿/*
  * SMSBL.hpp
- * 飞特SMSBL系列串行舵机应用层程序
- * 日期: 2020.6.17
- * 作者: 
+ * Прикладной слой для серво-приводов серии Feetech SMSBL
+ * Дата: 2020.6.17
+ * Автор: 
  */
 
 #ifndef _SMSBL_H
 #define _SMSBL_H
 
-//波特率定义
+// Определения скоростей передачи
 #define	SMSBL_1M 0
 #define	SMSBL_0_5M 1
 #define	SMSBL_250K 2
@@ -18,12 +18,12 @@
 #define	SMSBL_57600	6
 #define	SMSBL_38400	7
 
-//内存表定义
-//-------EPROM(只读)--------
+// Определения памяти
+//-------EPROM (только чтение)--------
 #define SMSBL_MODEL_L 3
 #define SMSBL_MODEL_H 4
 
-//-------EPROM(读写)--------
+//-------EPROM (чтение/запись)--------
 #define SMSBL_ID 5
 #define SMSBL_BAUD_RATE 6
 #define SMSBL_MIN_ANGLE_LIMIT_L 9
@@ -36,7 +36,7 @@
 #define SMSBL_OFS_H 32
 #define SMSBL_MODE 33
 
-//-------SRAM(读写)--------
+//-------SRAM (чтение/запись)--------
 #define SMSBL_TORQUE_ENABLE 40
 #define SMSBL_ACC 41
 #define SMSBL_GOAL_POSITION_L 42
@@ -47,7 +47,7 @@
 #define SMSBL_GOAL_SPEED_H 47
 #define SMSBL_LOCK 55
 
-//-------SRAM(只读)--------
+//-------SRAM (только чтение)--------
 #define SMSBL_PRESENT_POSITION_L 56
 #define SMSBL_PRESENT_POSITION_H 57
 #define SMSBL_PRESENT_SPEED_L 58

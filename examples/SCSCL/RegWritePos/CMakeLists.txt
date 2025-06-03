@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-set(project "Ping")
+set(project "RegWritePos")
 project(${project})
 
 # Устанавливаем стандарт C++17 (синхронизируем с основным проектом)

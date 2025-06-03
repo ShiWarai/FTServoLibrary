@@ -1,8 +1,8 @@
 /*
  * SMSCL.hpp
- * ����SMSCLϵ�д��ж���ӿ�
- * ����: 2020.6.17
- * ����: 
+ * Прикладной слой для серво-приводов серии Feetech SMSCL
+ * Дата: 2020.6.17
+ * Автор: 
  */
 
 #ifndef _SMSCL_H
@@ -18,12 +18,12 @@
 #define	SMSCL_57600	6
 #define	SMSCL_38400	7
 
-//�ڴ������
-//-------EPROM(ֻ��)--------
+// Определения памяти
+//-------EPROM (только чтение)--------
 #define SMSCL_VERSION_L 3
 #define SMSCL_VERSION_H 4
 
-//-------EPROM(��д)--------
+//-------EPROM (чтение/запись)--------
 #define SMSCL_ID 5
 #define SMSCL_BAUD_RATE 6
 #define SMSCL_RETURN_DELAY_TIME 7
@@ -52,7 +52,7 @@
 #define SMSCL_MAX_CURRENT_L 36
 #define SMSCL_MAX_CURRENT_H 37	
 
-//-------SRAM(��д)--------
+//-------SRAM (чтение/запись)--------
 #define SMSCL_TORQUE_ENABLE 40
 #define SMSCL_ACC 41
 #define SMSCL_GOAL_POSITION_L 42
@@ -63,7 +63,7 @@
 #define SMSCL_GOAL_SPEED_H 47
 #define SMSCL_LOCK 48
 
-//-------SRAM(ֻ��)--------
+//-------SRAM (только чтение)--------
 #define SMSCL_PRESENT_POSITION_L 56
 #define SMSCL_PRESENT_POSITION_H 57
 #define SMSCL_PRESENT_SPEED_L 58

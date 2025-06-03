@@ -9,7 +9,6 @@
 
 SCSerial::SCSerial()
 {
-    IOTimeOut = 100;
     fd = -1;
     txBufLen = 0;
     interfaceType = INTERFACE_UNKNOWN;
@@ -17,7 +16,6 @@ SCSerial::SCSerial()
 
 SCSerial::SCSerial(u8 End) : SCS(End)
 {
-    IOTimeOut = 100;
     fd = -1;
     txBufLen = 0;
     interfaceType = INTERFACE_UNKNOWN;
@@ -25,7 +23,6 @@ SCSerial::SCSerial(u8 End) : SCS(End)
 
 SCSerial::SCSerial(u8 End, u8 Level) : SCS(End, Level)
 {
-    IOTimeOut = 100;
     fd = -1;
     txBufLen = 0;
     interfaceType = INTERFACE_UNKNOWN;

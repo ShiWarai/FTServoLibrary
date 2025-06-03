@@ -1,14 +1,14 @@
 ﻿/*
  * SMS_STS.hpp
- * 飞特SMS/STS系列串行舵机应用层程序
- * 日期: 2021.12.8
- * 作者: 
+ * Прикладной слой для серво-приводов серии Feetech SMS/STS
+ * Дата: 2021.12.8
+ * Автор: 
  */
 
 #ifndef _SMS_STS_H
 #define _SMS_STS_H
 
-//波特率定义
+// Определения скоростей передачи
 #define	SMS_STS_1M 0
 #define	SMS_STS_0_5M 1
 #define	SMS_STS_250K 2
@@ -18,12 +18,12 @@
 #define	SMS_STS_57600 6
 #define	SMS_STS_38400 7
 
-//内存表定义
-//-------EPROM(只读)--------
+// Определения памяти
+//-------EPROM (только чтение)--------
 #define SMS_STS_MODEL_L 3
 #define SMS_STS_MODEL_H 4
 
-//-------EPROM(读写)--------
+//-------EPROM (чтение/запись)--------
 #define SMS_STS_ID 5
 #define SMS_STS_BAUD_RATE 6
 #define SMS_STS_MIN_ANGLE_LIMIT_L 9
@@ -36,7 +36,7 @@
 #define SMS_STS_OFS_H 32
 #define SMS_STS_MODE 33
 
-//-------SRAM(读写)--------
+//-------SRAM (чтение/запись)--------
 #define SMS_STS_TORQUE_ENABLE 40
 #define SMS_STS_ACC 41
 #define SMS_STS_GOAL_POSITION_L 42
@@ -47,7 +47,7 @@
 #define SMS_STS_GOAL_SPEED_H 47
 #define SMS_STS_LOCK 55
 
-//-------SRAM(只读)--------
+//-------SRAM (только чтение)--------
 #define SMS_STS_PRESENT_POSITION_L 56
 #define SMS_STS_PRESENT_POSITION_H 57
 #define SMS_STS_PRESENT_SPEED_L 58

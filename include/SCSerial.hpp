@@ -1,8 +1,8 @@
 ﻿/*
  * SCSerial.hpp
- * 飞特串行舵机硬件接口层程序
- * 日期: 2022.3.29
- * 作者: 
+ * Аппаратный интерфейсный слой для серво-приводов Feetech
+ * Дата: 2022.3.29
+ * Автор: 
  */
 
 #ifndef _SCSERIAL_H
@@ -15,6 +15,8 @@
 #include <unistd.h>
 #include <string.h>
 #include <sys/select.h>
+
+#define DEFAULT_IOTIMEOUT 500
 
 class SCSerial : public SCS
 {
@@ -36,9 +38,9 @@ protected:
     void rFlushSCS();                            // Очистка буфера чтения
     void wFlushSCS();                            // Очистка буфера записи
 public:
-    unsigned long int IOTimeOut; // Таймаут ввода-вывода
+    unsigned long int IOTimeOut = DEFAULT_IOTIMEOUT; // Таймаут ввода-вывода
     int Err;
-public:
+
     virtual int getErr() { return Err; }
     virtual int setBaudRate(int baudRate);
     virtual bool begin(int baudRate, const char* serialPort);

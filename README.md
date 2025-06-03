@@ -7,7 +7,7 @@
 - cmake .. && cmake --build .
 
 # Тестирование
-- cd examples/SMS_STS/WritePos
-- cmake .
-- make
-- sudo ./WritePos /dev/ttyUSB0
+- cd examples/SCSCL/Ping
+- mkdir build && cd build
+- rm -rf CMakeFiles &&  cmake .. && cmake --build .
+- sudo ./Ping /dev/ttyS7 1
