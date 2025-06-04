@@ -1,26 +1,11 @@
-# Игнорируем папки сборки
+python/.dev-venv
 build/
-**/build/
-
-# Игнорируем временные файлы CMake
-CMakeFiles/
-CMakeCache.txt
-cmake_install.cmake
-Makefile
-
-# Игнорируем скомпилированные файлы
-*.a
-*.o
+examples/*/build/
+dist/
 *.so
-
-# Игнорируем временные файлы редакторов
-*.swp
-*.swo
+*.pyd
+*.dll
+__pycache__/
+*.pyc
+ftservo.egg-info/
 .vscode/
-.idea/
-
-# Игнорируем прочие временные файлы
-*.log
-*.tmp
-*.bak
-core

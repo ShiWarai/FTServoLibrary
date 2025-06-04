@@ -1,0 +1,34 @@
+[build-system]
+requires = [
+    "setuptools>=61.0",
+    "wheel",
+    "pybind11>=2.6.0",
+    "toml"
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ftservo"
+version = "0.1.0"
+description = "Python bindings for FTServo library using pybind11"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+authors = [
+    { name = "ShiWarai", email = "zhuravliov.pav@yandex.ru" }
+]
+dependencies = [
+    "pybind11>=2.6.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/ShiWarai/FTServoLibrary"
+Repository = "https://github.com/ShiWarai/FTServoLibrary.git"
+Documentation = "https://github.com/ShiWarai/FTServoLibrary#readme"
+
+[tool.setuptools]
+packages = ["ftservo", "ftservo.examples"]
+package-dir = { "" = "." }
+
+[tool.setuptools.package-data]
+"ftservo" = ["*.pyi", "examples/*.py"]

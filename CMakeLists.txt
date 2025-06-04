@@ -17,3 +17,9 @@ file(GLOB hdrs ${CMAKE_SOURCE_DIR}/include/*.hpp)
 
 # Создаем статическую библиотеку
 add_library(${project} STATIC ${srs} ${hdrs})
+add_library(${project}_shared SHARED ${srs} ${hdrs})
+
+# Install the shared C++ library
+install(TARGETS ${project}_shared
+    DESTINATION "lib" # Install into the standard 'lib' directory
+)
