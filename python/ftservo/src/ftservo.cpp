@@ -8,7 +8,7 @@ namespace py = pybind11;
 PYBIND11_MODULE(ftservo, m) {
     m.doc() = "Python bindings for FTServo library using pybind11";
 
-    // Обертка для класса SCSerial
+    // Базовый класс SCSerial
     py::class_<SCSerial>(m, "SCSerial")
         .def(py::init<>()) // Конструктор по умолчанию
         .def(py::init<u8>()) // Конструктор с параметром End
@@ -21,25 +21,42 @@ PYBIND11_MODULE(ftservo, m) {
         .def("setBaudRate", &SCSerial::setBaudRate, "Set baud rate", py::arg("baudrate"))
         .def_readwrite("IOTimeOut", &SCSerial::IOTimeOut, "IO timeout in milliseconds");
 
-    // Обертка для класса SCSCL (если он используется)
+    // Класс SCSCL, наследующий от SCSerial
     py::class_<SCSCL, SCSerial>(m, "SCSCL")
         .def(py::init<>()) // Конструктор по умолчанию
         .def(py::init<u8>()) // Конструктор с параметром End
         .def(py::init<u8, u8>()) // Конструктор с параметрами End и Level
+        // Наследуем базовые методы
         .def("begin", &SCSCL::begin, "Initialize the servo with baudrate and port",
              py::arg("baudrate"), py::arg("serial_port"))
         .def("Ping", &SCSCL::Ping, "Ping a servo by ID", py::arg("id"))
         .def("end", &SCSCL::end, "Close the servo connection")
+        // Добавляем специфичные методы SCSCL
+        .def("genWrite", &SCSCL::genWrite, "Write data to servo register",
+             py::arg("ID"), py::arg("MemAddr"), py::arg("nDat"), py::arg("nLen"))
+        .def("Read", &SCSCL::Read, "Read data from servo register",
+             py::arg("ID"), py::arg("MemAddr"), py::arg("nData"), py::arg("nLen"))
+        .def("writeByte", &SCSCL::writeByte, "Write one byte to servo register",
+             py::arg("ID"), py::arg("MemAddr"), py::arg("bDat"))
+        .def("writeWord", &SCSCL::writeWord, "Write two bytes to servo register",
+             py::arg("ID"), py::arg("MemAddr"), py::arg("wDat"))
+        .def("readByte", &SCSCL::readByte, "Read one byte from servo register",
+             py::arg("ID"), py::arg("MemAddr"))
+        .def("readWord", &SCSCL::readWord, "Read two bytes from servo register",
+             py::arg("ID"), py::arg("MemAddr"))
         .def("WritePos", &SCSCL::WritePos,
              "Write position, time, speed, and acceleration for a single servo",
              py::arg("ID"), py::arg("Position"), py::arg("Time"), py::arg("Speed"), py::arg("Acc"))
         .def("RegWritePos", &SCSCL::RegWritePos,
              "Register write position, time, speed, and acceleration for a single servo (requires RegWriteAction to activate)",
              py::arg("ID"), py::arg("Position"), py::arg("Time"), py::arg("Speed"), py::arg("Acc"))
-        .def("sync_write_pos", [](SCSCL& self, py::list ids, py::list positions, py::list times, py::list speeds, py::list accs) {
+        .def("RegWriteAction", &SCSCL::RegWriteAction,
+             "Execute registered write commands for a specific servo (default: 0xfe - all servos)",
+             py::arg("ID") = 0xfe)
+        .def("SyncWritePos", [](SCSCL& self, py::list ids, py::list positions, py::list times, py::list speeds, py::list accs) {
             size_t n = ids.size();
             if (positions.size() != n || times.size() != n || speeds.size() != n || accs.size() != n) {
-                throw pybind11::value_error("Все входные списки для sync_write_pos должны иметь одинаковый размер.");
+                throw pybind11::value_error("All input lists for SyncWritePos must have the same size");
             }
 
             if (n == 0) {
@@ -60,9 +77,9 @@ PYBIND11_MODULE(ftservo, m) {
                     speed_vec[i] = speeds[i].cast<u16>();
                     acc_vec[i] = accs[i].cast<u8>();
                 } catch (const pybind11::cast_error& e) {
-                    throw pybind11::type_error("Неверный тип элемента в одном из списков: " + std::string(e.what()));
+                    throw pybind11::type_error("Invalid type in one of the lists: " + std::string(e.what()));
                 } catch (const pybind11::value_error& e) {
-                     throw pybind11::value_error("Значение элемента выходит за допустимый диапазон для типа (u8 или u16): " + std::string(e.what()));
+                    throw pybind11::value_error("Value out of range for type (u8 or u16): " + std::string(e.what()));
                 }
             }
 

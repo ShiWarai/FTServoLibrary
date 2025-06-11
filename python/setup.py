@@ -1,7 +1,34 @@
 from setuptools import setup, Extension
 import pybind11
 import os
-import toml # Import the toml library
+import toml
+import shutil
+
+# Get the absolute path to the project root directory
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+
+# Create include directory in the package if it doesn't exist
+include_dir = os.path.join(os.path.dirname(__file__), 'ftservo', 'include')
+os.makedirs(include_dir, exist_ok=True)
+
+# Copy header files to the package
+header_files = [
+    'SCSerial.hpp',
+    'SCSCL.hpp',
+    'SCS.hpp',
+    'INST.hpp',
+    'HLSCL.hpp',
+    'SCServo.hpp',
+    'SMSBL.hpp',
+    'SMSCL.hpp',
+    'SMS_STS.hpp'
+]
+
+for header in header_files:
+    src = os.path.join(project_root, 'include', header)
+    dst = os.path.join(include_dir, header)
+    if os.path.exists(src):
+        shutil.copy2(src, dst)
 
 # Define the extension
 ftservo_module = Extension(
@@ -9,12 +36,11 @@ ftservo_module = Extension(
     sources=["ftservo/src/ftservo.cpp"],
     include_dirs=[
         pybind11.get_include(),
-        "/home/orangepi/rtulab_feetech/library/FTServoLibrary/include"  # Absolute path for reliability
+        os.path.join(os.path.dirname(__file__), 'ftservo', 'include')  # Use local include directory
     ],
     library_dirs=["../build"],
-    libraries=["FTServo_shared"], # Link against the shared library built by CMake
+    libraries=["FTServo_shared"],
     extra_compile_args=["-std=c++11"],
-    #runtime_library_dirs=["$ORIGIN"], # May need adjustment depending on deployment
 )
 
 # Read metadata from pyproject.toml
@@ -49,21 +75,16 @@ except Exception:
 # Package setup
 setup(
     ext_modules=[ftservo_module],
-    packages=["ftservo", "ftservo.examples"], # Ensure examples directory is included
+    packages=["ftservo", "ftservo.examples"],
     package_dir={"": "."},
-    include_package_data=True, # Necessary to include files specified in pyproject.toml package-data
-    zip_safe=False, # Usually required for extensions
+    include_package_data=True,
+    zip_safe=False,
 
     # Explicitly set metadata for better compatibility with tools like pip show
     author=author_name,
     author_email=author_email,
     url=homepage_url,
     long_description=long_description,
-    long_description_content_type="text/markdown", # Assuming README is markdown
-    license="MIT", # Explicitly set license for pip show
-
-    # Other metadata like name, version, description, requires-python, dependencies, etc.
-    # are typically read by setuptools directly from pyproject.toml (PEP 621) if not specified here.
-    # Explicitly adding them here would duplicate, but might be necessary if PEP 621 reading is inconsistent.
-    # Let's test without explicit duplication first.
+    long_description_content_type="text/markdown",
+    license="MIT",
 )

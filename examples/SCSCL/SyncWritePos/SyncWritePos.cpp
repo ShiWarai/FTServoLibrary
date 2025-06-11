@@ -19,26 +19,26 @@ int main(int argc, char **argv)
         std::cout<<"Failed to init scscl motor!"<<std::endl;
         return 0;
     }
+
+	Speed[0] = 1;
+	Speed[1] = 1;
+	Acc[0] = 0;
+	Acc[1] = 0;
+
 	while(1){
 		Position[0] = 500;
 		Position[1] = 500;
-		Speed[0] = 0;
-		Speed[1] = 0;
-		Acc[0] = 0;
-		Acc[1] = 0;
+
 		sc.SyncWritePos(ID, 2, Position, 0, Speed, Acc);
 		std::cout<<"pos = "<<500<<std::endl;
-		usleep(75*1000);//[(P1-P0)/V]*1000+100
+		usleep(1000*1000);//[(P1-P0)/V]*1000+100
   
 		Position[0] = 600;
 		Position[1] = 600;
-		Speed[0] = 0;
-		Speed[1] = 0;
-		Acc[0] = 0;
-		Acc[1] = 0;
+
 		sc.SyncWritePos(ID, 2, Position, 0, Speed, Acc);
 		std::cout<<"pos = "<<600<<std::endl;
-		usleep(75*1000);//[(P1-P0)/V]*1000+100
+		usleep(1000*1000);//[(P1-P0)/V]*1000+100
 	}
 	sc.end();
 	return 1;

@@ -25,6 +25,10 @@ class SCSCL(SCSerial):
         """
         Ping a servo by ID
         """
+    def Read(self, ID: int, MemAddr: int, nData: int, nLen: int) -> int:
+        """
+        Read data from servo register
+        """
     def ReadCurrent(self, ID: int) -> int:
         """
         Read current of a servo
@@ -53,9 +57,17 @@ class SCSCL(SCSerial):
         """
         Read voltage of a servo
         """
+    def RegWriteAction(self, ID: int = 254) -> int:
+        """
+        Execute registered write commands for a specific servo (default: 0xfe - all servos)
+        """
     def RegWritePos(self, ID: int, Position: int, Time: int, Speed: int, Acc: int) -> int:
         """
         Register write position, time, speed, and acceleration for a single servo (requires RegWriteAction to activate)
+        """
+    def SyncWritePos(self, ids: list, positions: list, times: list, speeds: list, accs: list) -> None:
+        """
+        Synchronous write position for multiple servos
         """
     def WritePWM(self, ID: int, pwmOut: int) -> int:
         """
@@ -82,13 +94,29 @@ class SCSCL(SCSerial):
         """
         Close the servo connection
         """
-    def sync_write_pos(self, ids: list, positions: list, times: list, speeds: list, accs: list) -> None:
+    def genWrite(self, ID: int, MemAddr: int, nDat: int, nLen: int) -> int:
         """
-        Synchronous write position for multiple servos
+        Write data to servo register
+        """
+    def readByte(self, ID: int, MemAddr: int) -> int:
+        """
+        Read one byte from servo register
+        """
+    def readWord(self, ID: int, MemAddr: int) -> int:
+        """
+        Read two bytes from servo register
         """
     def unLockEprom(self, ID: int) -> int:
         """
         Unlock EPROM for a servo
+        """
+    def writeByte(self, ID: int, MemAddr: int, bDat: int) -> int:
+        """
+        Write one byte to servo register
+        """
+    def writeWord(self, ID: int, MemAddr: int, wDat: int) -> int:
+        """
+        Write two bytes to servo register
         """
 class SCSerial:
     def Ping(self, id: int) -> int:

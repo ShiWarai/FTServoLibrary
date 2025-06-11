@@ -83,7 +83,7 @@ if [ "$BUILD_PYTHON" = true ]; then
     # Укажите правильную директорию для -o если структура другая.
     STUB_OUTPUT_DIR="ftservo" # Директория, куда pybind11-stubgen поместит ftservo.pyi
     mkdir -p "$STUB_OUTPUT_DIR" # Создаем директорию, если ее нет (на всякий случай)
-    pybind11-stubgen ftservo -o "$STUB_OUTPUT_DIR"
+    pybind11-stubgen ftservo -o .
 
     echo "--- Шаг 4: Пересборка пакета (включая сгенерированные заглушки) ---"
     # Теперь, когда ftservo.pyi находится в директории ftservo/,
