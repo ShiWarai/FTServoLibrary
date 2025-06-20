@@ -1,8 +1,8 @@
-/*
- * HLSCL.cpp
- * 飞特HTS/HLS系列串行舵机应用层程序
- * 日期: 2024.11.21
- * 作者: txl
+/**
+ * @file HLSCL.cpp
+ * @brief Прикладной слой для серво-приводов серии Feetech HLSCL
+ * @date 19.06.2025
+ * @author ShiWarai
  */
 
 #include "HLSCL.hpp"

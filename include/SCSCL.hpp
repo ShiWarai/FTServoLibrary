@@ -1,8 +1,8 @@
-﻿/*
- * SCSCL.hpp
- * 飞特SCSCL系列串行舵机应用层程序
- * 日期: 2020.6.17
- * 作者: 
+﻿/**
+ * @file SCSCL.hpp
+ * @brief Прикладной слой для серво-приводов серии Feetech SCSCL
+ * @date 19.06.2025
+ * @author ShiWarai
  */
 
 #ifndef _SCSCL_H
@@ -18,12 +18,11 @@
 #define	SCSCL_57600	6
 #define	SCSCL_38400	7
 
-//内存表定义
-//-------EPROM(只读)--------
+//-------EPROM (только чтение)--------
 #define SCSCL_VERSION_L 3
 #define SCSCL_VERSION_H 4
 
-//-------EPROM(读写)--------
+//-------EPROM (чтение/запись)--------
 #define SCSCL_ID 5
 #define SCSCL_BAUD_RATE 6
 #define SCSCL_MIN_ANGLE_LIMIT_L 9
@@ -33,7 +32,7 @@
 #define SCSCL_CW_DEAD 26
 #define SCSCL_CCW_DEAD 27
 
-//-------SRAM(读写)--------
+//-------SRAM (чтение/запись)--------
 #define SCSCL_TORQUE_ENABLE 40
 #define SCSCL_GOAL_ACCELERATION 41
 #define SCSCL_GOAL_POSITION_L 42
@@ -44,7 +43,7 @@
 #define SCSCL_GOAL_SPEED_H 47
 #define SCSCL_LOCK 48
 
-//-------SRAM(只读)--------
+//-------SRAM (только чтение)--------
 #define SCSCL_PRESENT_POSITION_L 56
 #define SCSCL_PRESENT_POSITION_H 57
 #define SCSCL_PRESENT_SPEED_L 58

@@ -1,8 +1,8 @@
-﻿/*
- * SMS_STS.cpp
- * 飞特SMS/STS系列串行舵机应用层程序
- * 日期: 2021.12.8
- * 作者: 
+﻿/**
+ * @file SMS_STS.cpp
+ * @brief Прикладной слой для серво-приводов серии Feetech SMS/STS
+ * @date 19.06.2025
+ * @author ShiWarai
  */
 
 #include "SMS_STS.hpp"

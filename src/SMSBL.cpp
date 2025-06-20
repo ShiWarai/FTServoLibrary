@@ -1,8 +1,8 @@
-﻿/*
- * SMSBL.cpp
- * 飞特SMSBL系列串行舵机应用层程序
- * 日期: 2020.6.17
- * 作者: 
+﻿/**
+ * @file SMSBL.cpp
+ * @brief Прикладной слой для серво-приводов серии Feetech SMSBL
+ * @date 19.06.2025
+ * @author ShiWarai
  */
 
 #include "SMSBL.hpp"

@@ -1,4 +1,7 @@
 python/.dev-venv
+python/ftservo/include
+
+
 build/
 examples/*/build/
 dist/

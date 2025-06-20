@@ -1,8 +1,8 @@
-﻿/*
- * SCSerial.hpp
- * Аппаратный интерфейсный слой для серво-приводов Feetech
- * Дата: 2022.3.29
- * Автор: 
+﻿/**
+ * @file SCSerial.hpp
+ * @brief Аппаратный интерфейсный слой для серво-приводов Feetech
+ * @date 19.06.2025
+ * @author ShiWarai
  */
 
 #ifndef _SCSERIAL_H

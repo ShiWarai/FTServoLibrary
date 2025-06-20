@@ -1,8 +1,8 @@
-/*
- * SMSCL.cpp
- * ����SMSCLϵ�д��ж���ӿ�
- * ����: 2020.6.17
- * ����: 
+/**
+ * @file SMSCL.cpp
+ * @brief Прикладной слой для серво-приводов серии Feetech SMSCL
+ * @date 19.06.2025
+ * @author ShiWarai
  */
 
 #include "SMSCL.hpp"

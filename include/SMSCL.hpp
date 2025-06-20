@@ -1,8 +1,8 @@
-/*
- * SMSCL.hpp
- * Прикладной слой для серво-приводов серии Feetech SMSCL
- * Дата: 2020.6.17
- * Автор: 
+/**
+ * @file SMSCL.hpp
+ * @brief Прикладной слой для серво-приводов серии Feetech SMSCL
+ * @date 19.06.2025
+ * @author ShiWarai
  */
 
 #ifndef _SMSCL_H
@@ -85,23 +85,23 @@ public:
 	SMSCL();
 	SMSCL(u8 End);
 	SMSCL(u8 End, u8 Level);
-	virtual int WritePosEx(u8 ID, s16 Position, u16 Speed, u8 ACC = 0);//��ͨд�������λ��ָ��
-	virtual int RegWritePosEx(u8 ID, s16 Position, u16 Speed, u8 ACC = 0);//�첽д�������λ��ָ��(RegWriteAction��Ч)
-	virtual void SyncWritePosEx(u8 ID[], u8 IDN, s16 Position[], u16 Speed[], u8 ACC[]);//ͬ��д������λ��ָ��
-	virtual int WheelMode(u8 ID);//����ģʽ
-	virtual int WriteSpe(u8 ID, s16 Speed, u8 ACC = 0);//����ģʽ����ָ��
-	virtual int EnableTorque(u8 ID, u8 Enable);//Ť������ָ��
-	virtual int unLockEprom(u8 ID);//eprom����
-	virtual int LockEprom(u8 ID);//eprom����
-	virtual int CalibrationOfs(u8 ID);//��λУ׼
-	virtual int FeedBack(int ID);//���������Ϣ
-	virtual int ReadPos(int ID);//��λ��
-	virtual int ReadSpeed(int ID);//���ٶ�
-	virtual int ReadLoad(int ID);//�����������ĵ�ѹ�ٷֱ�(0~1000)
-	virtual int ReadVoltage(int ID);//����ѹ
-	virtual int ReadTemper(int ID);//���¶�
-	virtual int ReadMove(int ID);////���ƶ�״̬
-	virtual int ReadCurrent(int ID);//������
+	virtual int WritePosEx(u8 ID, s16 Position, u16 Speed, u8 ACC = 0);// Обычная запись позиции для одного сервопривода
+	virtual int RegWritePosEx(u8 ID, s16 Position, u16 Speed, u8 ACC = 0);// Асинхронная запись позиции для одного сервопривода (активируется RegWriteAction)
+	virtual void SyncWritePosEx(u8 ID[], u8 IDN, s16 Position[], u16 Speed[], u8 ACC[]);// Синхронная запись позиции для нескольких сервоприводов
+	virtual int WheelMode(u8 ID);// Режим колеса
+	virtual int WriteSpe(u8 ID, s16 Speed, u8 ACC = 0);// Управление скоростью в режиме колеса
+	virtual int EnableTorque(u8 ID, u8 Enable);// Управление моментом
+	virtual int unLockEprom(u8 ID);// Разблокировать EPROM
+	virtual int LockEprom(u8 ID);// Заблокировать EPROM
+	virtual int CalibrationOfs(u8 ID);// Калибровка среднего положения
+	virtual int FeedBack(int ID);// Получить обратную связь
+	virtual int ReadPos(int ID);// Прочитать позицию
+	virtual int ReadSpeed(int ID);// Прочитать скорость
+	virtual int ReadLoad(int ID);// Прочитать нагрузку (процент напряжения на моторе 0~1000)
+	virtual int ReadVoltage(int ID);// Прочитать напряжение
+	virtual int ReadTemper(int ID);// Прочитать температуру
+	virtual int ReadMove(int ID);// Прочитать состояние движения
+	virtual int ReadCurrent(int ID);// Прочитать ток
 private:
 	u8 Mem[SMSCL_PRESENT_CURRENT_H-SMSCL_PRESENT_POSITION_L+1];
 };

@@ -1,8 +1,8 @@
-/*
- * SCServo.hpp
- * Интерфейс для серво-приводов Feetech
- * Дата: 2021.12.8
- * Автор: 
+/**
+ * @file SCServo.hpp
+ * @brief Интерфейс для серво-приводов Feetech
+ * @date 19.06.2025
+ * @author ShiWarai
  */
 
 #ifndef _SCSERVO_H

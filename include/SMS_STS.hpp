@@ -1,8 +1,8 @@
-﻿/*
- * SMS_STS.hpp
- * Прикладной слой для серво-приводов серии Feetech SMS/STS
- * Дата: 2021.12.8
- * Автор: 
+﻿/**
+ * @file SMS_STS.hpp
+ * @brief Прикладной слой для серво-приводов серии Feetech SMS/STS
+ * @date 19.06.2025
+ * @author ShiWarai
  */
 
 #ifndef _SMS_STS_H
@@ -68,23 +68,23 @@ public:
 	SMS_STS();
 	SMS_STS(u8 End);
 	SMS_STS(u8 End, u8 Level);
-	virtual int WritePosEx(u8 ID, s16 Position, u16 Speed, u8 ACC = 0);//普通写单个舵机位置指令
-	virtual int RegWritePosEx(u8 ID, s16 Position, u16 Speed, u8 ACC = 0);//异步写单个舵机位置指令(RegWriteAction生效)
-	virtual void SyncWritePosEx(u8 ID[], u8 IDN, s16 Position[], u16 Speed[], u8 ACC[]);//同步写多个舵机位置指令
-	virtual int WheelMode(u8 ID);//恒速模式
-	virtual int WriteSpe(u8 ID, s16 Speed, u8 ACC = 0);//恒速模式控制指令
-	virtual int EnableTorque(u8 ID, u8 Enable);//扭力控制指令
-	virtual int unLockEprom(u8 ID);//eprom解锁
-	virtual int LockEprom(u8 ID);//eprom加锁
-	virtual int CalibrationOfs(u8 ID);//中位校准
-	virtual int FeedBack(int ID);//反馈舵机信息
-	virtual int ReadPos(int ID);//读位置
-	virtual int ReadSpeed(int ID);//读速度
-	virtual int ReadLoad(int ID);//读输出至电机的电压百分比(0~1000)
-	virtual int ReadVoltage(int ID);//读电压
-	virtual int ReadTemper(int ID);//读温度
-	virtual int ReadMove(int ID);//读移动状态
-	virtual int ReadCurrent(int ID);//读电流
+	virtual int WritePosEx(u8 ID, s16 Position, u16 Speed, u8 ACC = 0);// Обычная запись позиции для одного сервопривода
+	virtual int RegWritePosEx(u8 ID, s16 Position, u16 Speed, u8 ACC = 0);// Асинхронная запись позиции для одного сервопривода (активируется RegWriteAction)
+	virtual void SyncWritePosEx(u8 ID[], u8 IDN, s16 Position[], u16 Speed[], u8 ACC[]);// Синхронная запись позиции для нескольких сервоприводов
+	virtual int WheelMode(u8 ID);// Режим колеса
+	virtual int WriteSpe(u8 ID, s16 Speed, u8 ACC = 0);// Управление скоростью в режиме колеса
+	virtual int EnableTorque(u8 ID, u8 Enable);// Управление моментом
+	virtual int unLockEprom(u8 ID);// Разблокировать EPROM
+	virtual int LockEprom(u8 ID);// Заблокировать EPROM
+	virtual int CalibrationOfs(u8 ID);// Калибровка среднего положения
+	virtual int FeedBack(int ID);// Получить обратную связь
+	virtual int ReadPos(int ID);// Прочитать позицию
+	virtual int ReadSpeed(int ID);// Прочитать скорость
+	virtual int ReadLoad(int ID);// Прочитать нагрузку (процент напряжения на моторе 0~1000)
+	virtual int ReadVoltage(int ID);// Прочитать напряжение
+	virtual int ReadTemper(int ID);// Прочитать температуру
+	virtual int ReadMove(int ID);// Прочитать состояние движения
+	virtual int ReadCurrent(int ID);// Прочитать ток
 private:
 	u8 Mem[SMS_STS_PRESENT_CURRENT_H-SMS_STS_PRESENT_POSITION_L+1];
 };

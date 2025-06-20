@@ -1,8 +1,8 @@
-/*
- * SCSerial.cpp
- * 飞特串行舵机硬件接口层程序
- * 日期: 2022.3.29
- * 作者: 
+/**
+ * @file SCSerial.cpp
+ * @brief Аппаратный интерфейсный слой для серво-приводов Feetech
+ * @date 19.06.2025
+ * @author ShiWarai
  */
 
 #include "SCSerial.hpp"
