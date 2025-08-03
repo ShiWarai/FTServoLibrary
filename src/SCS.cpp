@@ -1,17 +1,17 @@
-﻿/*
- * SCS.cpp
- * 飞特串行舵机通信层协议程序
- * 日期: 2022.3.29
- * 作者: 
+﻿/**
+ * @file SCS.cpp
+ * @brief Коммуникационный слой протокола для серво-приводов Feetech
+ * @date 19.06.2025
+ * @author ShiWarai
  */
 #include <stdio.h>
 #include <string.h>
 #include <stddef.h>
-#include "SCS.h"
+#include "SCS.hpp"
 
 SCS::SCS()
 {
-	Level = 1;//除广播指令所有指令返回应答
+	Level = 1;//Все команды, кроме широковещательной, возвращают ответ
 	Error = 0;
 }
 
@@ -29,8 +29,8 @@ SCS::SCS(u8 End, u8 Level)
 	Error = 0;
 }
 
-//1个16位数拆分为2个8位数
-//DataL为低位，DataH为高位
+//Разделить одно 16-битное число на два 8-битных
+//DataL — младший байт, DataH — старший байт
 void SCS::Host2SCS(u8 *DataL, u8* DataH, u16 Data)
 {
 	if(End){
@@ -42,8 +42,8 @@ void SCS::Host2SCS(u8 *DataL, u8* DataH, u16 Data)
 	}
 }
 
-//2个8位数组合为1个16位数
-//DataL为低位，DataH为高位
+//Объединить два 8-битных числа в одно 16-битное
+//DataL — младший байт, DataH — старший байт
 u16 SCS::SCS2Host(u8 DataL, u8 DataH)
 {
 	u16 Data;
@@ -89,8 +89,8 @@ void SCS::writeBuf(u8 ID, u8 MemAddr, u8 *nDat, u8 nLen, u8 Fun)
 	writeSCS(~CheckSum);
 }
 
-//普通写指令
-//舵机ID，MemAddr内存表地址，写入数据，写入长度
+//Обычная команда записи
+//ID сервопривода, адрес памяти MemAddr, записываемые данные, длина записи
 int SCS::genWrite(u8 ID, u8 MemAddr, u8 *nDat, u8 nLen)
 {
 	rFlushSCS();
@@ -99,8 +99,8 @@ int SCS::genWrite(u8 ID, u8 MemAddr, u8 *nDat, u8 nLen)
 	return Ack(ID);
 }
 
-//异步写指令
-//舵机ID，MemAddr内存表地址，写入数据，写入长度
+//Асинхронная команда записи
+//ID сервопривода, адрес памяти MemAddr, записываемые данные, длина записи
 int SCS::regWrite(u8 ID, u8 MemAddr, u8 *nDat, u8 nLen)
 {
 	rFlushSCS();
@@ -109,8 +109,8 @@ int SCS::regWrite(u8 ID, u8 MemAddr, u8 *nDat, u8 nLen)
 	return Ack(ID);
 }
 
-//异步写执行指令
-//舵机ID
+//Команда выполнения асинхронной записи
+//ID сервопривода
 int SCS::RegWriteAction(u8 ID)
 {
 	rFlushSCS();
@@ -119,9 +119,9 @@ int SCS::RegWriteAction(u8 ID)
 	return Ack(ID);
 }
 
-//同步写指令
-//舵机ID[]数组，IDN数组长度，MemAddr内存表地址，写入数据，写入长度
-void SCS::snycWrite(u8 ID[], u8 IDN, u8 MemAddr, u8 *nDat, u8 nLen)
+//Команда синхронной записи
+//Массив ID сервоприводов, длина массива IDN, адрес памяти MemAddr, записываемые данные, длина записи
+void SCS::syncWrite(u8 ID[], u8 IDN, u8 MemAddr, u8 *nDat, u8 nLen)
 {
 	rFlushSCS();
 	u8 mesLen = ((nLen+1)*IDN+4);
@@ -168,8 +168,8 @@ int SCS::writeWord(u8 ID, u8 MemAddr, u16 wDat)
 	return Ack(ID);
 }
 
-//读指令
-//舵机ID，MemAddr内存表地址，返回数据nData，数据长度nLen
+//Команда чтения
+//ID сервопривода, адрес памяти MemAddr, возвращаемые данные nData, длина данных nLen
 int SCS::Read(u8 ID, u8 MemAddr, u8 *nData, u8 nLen)
 {
 	rFlushSCS();
@@ -180,13 +180,10 @@ int SCS::Read(u8 ID, u8 MemAddr, u8 *nData, u8 nLen)
 	u8 i;
 	u8 calSum = 0;
 	int Size = readSCS(bBuf, nLen+6);
-	//printf("nLen+6 = %d, Size = %d\n", nLen+6, Size);
+
 	if(Size!=(nLen+6)){
 		return 0;
 	}
-	//for(i=0; i<Size; i++){
-		//printf("%x\n", bBuf[i]);
-	//}
 	if(bBuf[0]!=0xff || bBuf[1]!=0xff){
 		return 0;
 	}
@@ -202,7 +199,7 @@ int SCS::Read(u8 ID, u8 MemAddr, u8 *nData, u8 nLen)
 	return nLen;
 }
 
-//读1字节，超时返回-1
+//Чтение 1 байта, при тайм-ауте возвращает -1
 int SCS::readByte(u8 ID, u8 MemAddr)
 {
 	u8 bDat;
@@ -214,7 +211,7 @@ int SCS::readByte(u8 ID, u8 MemAddr)
 	}
 }
 
-//读2字节，超时返回-1
+//Чтение 2 байт, при тайм-ауте возвращает -1
 int SCS::readWord(u8 ID, u8 MemAddr)
 {	
 	u8 nDat[2];
@@ -227,7 +224,7 @@ int SCS::readWord(u8 ID, u8 MemAddr)
 	return wDat;
 }
 
-//Ping指令，返回舵机ID，超时返回-1
+//Команда Ping, возвращает ID сервопривода, при тайм-ауте возвращает -1
 int	SCS::Ping(u8 ID)
 {
 	rFlushSCS();

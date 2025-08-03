@@ -1,5 +1,5 @@
 #include <iostream>
-#include "SCServo.h"
+#include "SCServo.hpp"
 
 SCSCL sc;
 

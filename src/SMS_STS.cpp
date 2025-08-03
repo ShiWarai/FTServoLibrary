@@ -1,11 +1,11 @@
-﻿/*
- * SMS_STS.cpp
- * 飞特SMS/STS系列串行舵机应用层程序
- * 日期: 2021.12.8
- * 作者: 
+﻿/**
+ * @file SMS_STS.cpp
+ * @brief Прикладной слой для серво-приводов серии Feetech SMS/STS
+ * @date 19.06.2025
+ * @author ShiWarai
  */
 
-#include "SMS_STS.h"
+#include "SMS_STS.hpp"
 
 SMS_STS::SMS_STS()
 {
@@ -76,7 +76,7 @@ void SMS_STS::SyncWritePosEx(u8 ID[], u8 IDN, s16 Position[], u16 Speed[], u8 AC
         Host2SCS(bBuf+5, bBuf+6, V);
         memcpy(offbuf[i], bBuf, 7);
     }
-    snycWrite(ID, IDN, SMS_STS_ACC, (u8*)offbuf, 7);
+    syncWrite(ID, IDN, SMS_STS_ACC, (u8*)offbuf, 7);
 }
 
 int SMS_STS::WheelMode(u8 ID)

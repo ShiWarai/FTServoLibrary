@@ -1,9 +1,5 @@
-/*
-舵机出厂速度单位是0.0146rpm，速度为V=1500
-*/
-
 #include <iostream>
-#include "SCServo.h"
+#include "SCServo.hpp"
 
 SCSCL sc;
 

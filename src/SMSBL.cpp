@@ -1,11 +1,11 @@
-﻿/*
- * SMSBL.cpp
- * 飞特SMSBL系列串行舵机应用层程序
- * 日期: 2020.6.17
- * 作者: 
+﻿/**
+ * @file SMSBL.cpp
+ * @brief Прикладной слой для серво-приводов серии Feetech SMSBL
+ * @date 19.06.2025
+ * @author ShiWarai
  */
 
-#include "SMSBL.h"
+#include "SMSBL.hpp"
 
 SMSBL::SMSBL()
 {
@@ -76,7 +76,7 @@ void SMSBL::SyncWritePosEx(u8 ID[], u8 IDN, s16 Position[], u16 Speed[], u8 ACC[
         Host2SCS(bBuf+5, bBuf+6, V);
         memcpy(offbuf[i], bBuf, 7);
     }
-    snycWrite(ID, IDN, SMSBL_ACC, (u8*)offbuf, 7);
+    syncWrite(ID, IDN, SMSBL_ACC, (u8*)offbuf, 7);
 }
 
 int SMSBL::WheelMode(u8 ID)

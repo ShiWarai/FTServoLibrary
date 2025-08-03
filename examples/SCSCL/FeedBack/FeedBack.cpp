@@ -1,11 +1,11 @@
 #include <iostream>
-#include "SCServo.h"
+#include "SCServo.hpp"
 
 SCSCL sc;
 
 int main(int argc, char **argv)
 {
-	if(argc<2){
+	if(argc<3){
         std::cout<<"argc error!"<<std::endl;
         return 0;
 	}
@@ -22,9 +22,8 @@ int main(int argc, char **argv)
 		int Temper;
 		int Move;
 		int Current;
-		//一条指令读舵机所有反馈数据至缓冲区
-		if(sc.FeedBack(1)!=-1){
-			Pos = sc.ReadPos(-1);//-1表示缓冲区数据，以下相同
+		if(sc.FeedBack(atoi(argv[2]))!=-1){
+			Pos = sc.ReadPos(-1);
 			Speed = sc.ReadSpeed(-1);
 			Load = sc.ReadLoad(-1);
 			Voltage = sc.ReadVoltage(-1);
@@ -43,8 +42,8 @@ int main(int argc, char **argv)
 			std::cout<<"read err"<<std::endl;
 			sleep(1);
 		}
-		//一条指令读一个反馈数据
-		Pos = sc.ReadPos(1);
+
+		Pos = sc.ReadPos(atoi(argv[2]));
 		if(Pos!=-1){
 			std::cout<<"pos = "<<Pos<<std::endl;
 			usleep(10*1000);
@@ -52,7 +51,7 @@ int main(int argc, char **argv)
 			std::cout<<"read pos err"<<std::endl;
 			sleep(1);
 		}
-		Voltage = sc.ReadVoltage(1);
+		Voltage = sc.ReadVoltage(atoi(argv[2]));
 		if(Voltage!=-1){
 			std::cout<<"Voltage = "<<Voltage<<std::endl;
 			usleep(10*1000);
@@ -61,7 +60,7 @@ int main(int argc, char **argv)
 			sleep(1);
 		}
 
-		Temper = sc.ReadTemper(1);
+		Temper = sc.ReadTemper(atoi(argv[2]));
 		if(Temper!=-1){
 			std::cout<<"temperature = "<<Temper<<std::endl;
 			usleep(10*1000);
@@ -70,7 +69,7 @@ int main(int argc, char **argv)
 			sleep(1);
 		}
 
-		Speed = sc.ReadSpeed(1);
+		Speed = sc.ReadSpeed(atoi(argv[2]));
 		if(Speed!=-1){
 			std::cout<<"Speed = "<<Speed<<std::endl;
 			usleep(10*1000);
@@ -79,7 +78,7 @@ int main(int argc, char **argv)
 			sleep(1);
 		}
   
-		Load = sc.ReadLoad(1);
+		Load = sc.ReadLoad(atoi(argv[2]));
 		if(Load!=-1){
 			std::cout<<"Load = "<<Load<<std::endl;
 			usleep(10*1000);
@@ -88,7 +87,7 @@ int main(int argc, char **argv)
 			sleep(1);
 		}
 
-		Current = sc.ReadCurrent(1);
+		Current = sc.ReadCurrent(atoi(argv[2]));
 		if(Current!=-1){
 			std::cout<<"Current = "<<Current<<std::endl;
 			usleep(10*1000);
@@ -97,7 +96,7 @@ int main(int argc, char **argv)
 			sleep(1);
 		}
 
-		Move = sc.ReadMove(1);
+		Move = sc.ReadMove(atoi(argv[2]));
 		if(Move!=-1){
 			std::cout<<"Move = "<<Move<<std::endl;
 			usleep(10*1000);

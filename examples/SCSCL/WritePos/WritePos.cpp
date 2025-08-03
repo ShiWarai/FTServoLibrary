@@ -3,13 +3,13 @@
 */
 
 #include <iostream>
-#include "SCServo.h"
+#include "SCServo.hpp"
 
 SCSCL sc;
 
 int main(int argc, char **argv)
 {
-	if(argc<2){
+	if(argc<3){
         std::cout<<"argc error!"<<std::endl;
         return 0;
 	}
@@ -19,13 +19,13 @@ int main(int argc, char **argv)
         return 0;
     }
 	while(1){
-		sc.WritePos(1, 1000, 0, 1500);//舵机(ID1)以最高速度V=1500步/秒,运行至P1=1000
-		std::cout<<"pos = "<<1000<<std::endl;
-		usleep(754*1000);//[(P1-P0)/V]*1000+100
+		sc.WritePos(atoi(argv[2]), 500, 0, 0, 0);
+		std::cout<<"pos = "<<500<<std::endl;
+		usleep(75*1000);//[(P1-P0)/V]*1000+100
   
-		sc.WritePos(1, 20, 0, 1500);//舵机(ID1)以最高V=1500步/秒,运行至P1=20
-		std::cout<<"pos = "<<20<<std::endl;
-		usleep(754*1000);//[(P1-P0)/V]*1000+100
+		sc.WritePos(atoi(argv[2]), 600, 0, 0, 0);
+		std::cout<<"pos = "<<600<<std::endl;
+		usleep(75*1000);//[(P1-P0)/V]*1000+100
 	}
 	sc.end();
 	return 1;

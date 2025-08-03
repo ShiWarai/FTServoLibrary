@@ -1,11 +1,11 @@
-/*
- * SMSCL.cpp
- * ����SMSCLϵ�д��ж���ӿ�
- * ����: 2020.6.17
- * ����: 
+/**
+ * @file SMSCL.cpp
+ * @brief Прикладной слой для серво-приводов серии Feetech SMSCL
+ * @date 19.06.2025
+ * @author ShiWarai
  */
 
-#include "SMSCL.h"
+#include "SMSCL.hpp"
 
 SMSCL::SMSCL()
 {
@@ -75,7 +75,7 @@ void SMSCL::SyncWritePosEx(u8 ID[], u8 IDN, s16 Position[], u16 Speed[], u8 ACC[
         Host2SCS(bBuf+5, bBuf+6, V);
         memcpy(offbuf[i], bBuf, 7);
     }
-    snycWrite(ID, IDN, SMSCL_ACC, (u8*)offbuf, 7);
+    syncWrite(ID, IDN, SMSCL_ACC, (u8*)offbuf, 7);
 }
 
 int SMSCL::WheelMode(u8 ID)

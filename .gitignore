@@ -1,0 +1,14 @@
+python/.dev-venv
+python/ftservo/include
+
+
+build/
+examples/*/build/
+dist/
+*.so
+*.pyd
+*.dll
+__pycache__/
+*.pyc
+ftservo.egg-info/
+.vscode/
